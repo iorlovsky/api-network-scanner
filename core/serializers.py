@@ -1,21 +1,17 @@
 from rest_framework import serializers
-from rest_framework.compat import authenticate
+
+from core import models
 
 
-class SigninSerializer(serializers.Serializer):
+class UserSerializer(serializers.ModelSerializer):
 
-    def validate(self, attrs):
-        email = attrs.get('email')
-        password = attrs.get('password')
-
-        user = authenticate(request=self.context.get('request'),
-                            email=email, password=password)
-
-        attrs['user'] = user
-        return attrs
+    class Meta:
+        model = models.User
+        fields = '__all__'
+        extra_kwargs = {
+            'password': {'write_only': True},
+        }
 
     def create(self, validated_data):
-        pass
-
-    def update(self, instance, validated_data):
-        pass
+        user = models.User.objects.create_user(**validated_data)
+        return user
