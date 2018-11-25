@@ -7,7 +7,8 @@ from core import serializers, models
 class SigninView(views.APIView):
 
     def post(self, request, *args, **kwargs):
-        return Response({'test': 'ok'})
+        user_data = serializers.UserSerializer(request.user).data
+        return Response(user_data)
 
 
 class SignupView(generics.CreateAPIView):
