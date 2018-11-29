@@ -52,3 +52,24 @@ class NetstatSerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         pass
+
+
+class IfstatSerializer(serializers.Serializer):
+    id = serializers.SerializerMethodField()
+    speed_in = serializers.SerializerMethodField()
+    speed_out = serializers.SerializerMethodField()
+
+    def get_id(self, data):
+        return uuid.uuid4()
+
+    def get_speed_in(self, data):
+        return data[0]
+
+    def get_speed_out(self, data):
+        return data[1]
+
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass

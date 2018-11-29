@@ -5,5 +5,6 @@ from core.views import users, network
 urlpatterns = [
     path('login/', users.SigninView.as_view()),
     path('signup/', users.SignupView.as_view()),
-    path('scanners/', network.Scanners.as_view())
+    path('scanners/netstat/', network.Netstat.as_view()),
+    path('scanners/ifstat/', network.Ifstat.as_view())
 ]
