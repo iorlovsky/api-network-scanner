@@ -73,3 +73,24 @@ class IfstatSerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         pass
+
+
+class NetworkCommonInfoSerizalizer(serializers.Serializer):
+    ip_addr = serializers.SerializerMethodField()
+    subnet_mask = serializers.SerializerMethodField()
+    broadcast = serializers.SerializerMethodField()
+
+    def get_ip_addr(self, data):
+        return data[0].split(':')[1]
+
+    def get_subnet_mask(self, data):
+        return data[1].split(':')[1]
+
+    def get_broadcast(self, data):
+        return data[2].split(':')[1]
+
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass
