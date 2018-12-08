@@ -92,6 +92,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+PATH_TO_SOCKET = 'core/my_socket.py'
+
 try:
     from .local_settings import *
 except ImportError:
